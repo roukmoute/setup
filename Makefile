@@ -18,6 +18,8 @@ config: ## Generate the ".env" file if it doesn't already exist
 	-@test -f docker/xdebug.env || cp docker/xdebug.env.dist docker/xdebug.env
 	-@test -f phpspec.yml || cp phpspec.yml.dist phpspec.yml
 	-@test -f phpstan.neon || cp phpstan.neon.dist phpstan.neon
+	-@test -f .php_cs || cp .php_cs.dist .php_cs
+	-@test -f .php_cs.spec || cp .php_cs.spec.dist .php_cs.spec
 
 install: ## Install the environment
 	make config stop uninstall build start composer
@@ -94,6 +96,20 @@ check: ## Execute all quality assurance tools
 
 lint: ## Lint YAML configuration
 	$(PHP_SERVICE) "php bin/console_dist lint:yaml config"
+
+phpcsfixer: ## Run the PHP coding standards fixer on dry-run mode
+	@test -f .php_cs || cp .php_cs.dist .php_cs
+	$(PHP_SERVICE) "php vendor/bin/php-cs-fixer fix --config=.php_cs \
+		--verbose --dry-run" && \
+	$(PHP_SERVICE) "php vendor/bin/php-cs-fixer fix --config=.php_cs.spec \
+		--verbose --dry-run"
+
+phpcsfixer-apply: ## Run the PHP coding standards fixer on apply mode
+	@test -f .php_cs || cp .php_cs.dist .php_cs && \
+	$(PHP_SERVICE) "php vendor/bin/php-cs-fixer fix --config=.php_cs \
+		--verbose" && \
+	$(PHP_SERVICE) "php vendor/bin/php-cs-fixer fix --config=.php_cs.spec \
+		--verbose"
 
 tests: SHELL := /bin/bash
 tests:

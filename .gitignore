@@ -13,3 +13,10 @@
 ##> phpstan ###
 /phpstan.neon
 ###< phpstan ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php_cs
+/.php_cs.spec
+/.php_cs.cache
+/.php_cs.spec.cache
+###< friendsofphp/php-cs-fixer ###
