@@ -50,7 +50,12 @@
             "security-checker security:check": "script"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "echo Installing Git Hooks",
+            "mkdir -p .git/hooks",
+            "cp --force --update --recursive git-hooks/* .git/hooks/",
+            "cp --force --update git-hooks/pre-commit .git/hooks/post-rewrite",
+            "sed -i 's/pre-commit/post-rewrite/g' .git/hooks/post-rewrite"
         ],
         "post-update-cmd": [
             "@auto-scripts"

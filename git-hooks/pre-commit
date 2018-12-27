@@ -1,0 +1,19 @@
+#!/bin/sh
+
+CURRENT_FOLDER=`readlink -f "${BASH_SOURCE[0]}" 2> /dev/null||echo $0`
+DIR=`dirname "${CURRENT_FOLDER}"`
+. "$DIR/run_test"
+
+ERRORS_COUNT=0
+
+echo "
+$(tput setaf 3)Running Git Hooks (pre-commit)$(tput sgr0)
+";
+
+echo "No hooks for the moment"
+
+if [ $ERRORS_COUNT -ne 0 ]; then
+    tput setaf 1; echo 'Some problems have been failed. Fix it and commit again.'; tput sgr0;
+fi
+
+exit $ERRORS_COUNT
