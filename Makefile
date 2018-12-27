@@ -16,6 +16,7 @@ build: ## Build the environment
 config: ## Generate the ".env" file if it doesn't already exist
 	-@test -f .env || cp .env.dist .env
 	-@test -f docker/xdebug.env || cp docker/xdebug.env.dist docker/xdebug.env
+	-@test -f phpspec.yml || cp phpspec.yml.dist phpspec.yml
 
 install: ## Install the environment
 	make config stop uninstall build start composer
@@ -92,6 +93,10 @@ check: ## Execute all quality assurance tools
 
 lint: ## Lint YAML configuration
 	$(PHP_SERVICE) "php bin/console_dist lint:yaml config"
+
+tests: SHELL := /bin/bash
+tests:
+	@./git-hooks/pre-commit
 
 security: ## Run a security analysis on dependencies
 	$(PHP_SERVICE) "php bin/console_dist security:check"

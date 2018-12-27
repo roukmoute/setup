@@ -5,3 +5,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+##> phpspec ###
+/phpspec.yml
+###< phpspec ###

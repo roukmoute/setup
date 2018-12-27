@@ -10,7 +10,7 @@ echo "
 $(tput setaf 3)Running Git Hooks (pre-commit)$(tput sgr0)
 ";
 
-echo "No hooks for the moment"
+run_test phpspec docker-compose exec -T php-fpm vendor/bin/phpspec run
 
 if [ $ERRORS_COUNT -ne 0 ]; then
     tput setaf 1; echo 'Some problems have been failed. Fix it and commit again.'; tput sgr0;

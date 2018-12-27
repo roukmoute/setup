@@ -1,0 +1,7 @@
+suites:
+    setup_suite:
+        namespace: Setup
+        psr4_prefix: Setup
+        spec_prefix: 'Spec'
+        src_path: 'src/Setup'
+        spec_path: 'test'
