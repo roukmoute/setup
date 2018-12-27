@@ -10,6 +10,7 @@ echo "
 $(tput setaf 3)Running Git Hooks (pre-commit)$(tput sgr0)
 ";
 
+run_test PHPStan docker-compose exec -T php-fpm vendor/bin/phpstan analyse src --level=7 --no-progress --memory-limit=-1 2> /dev/null
 run_test phpspec docker-compose exec -T php-fpm vendor/bin/phpspec run
 
 if [ $ERRORS_COUNT -ne 0 ]; then

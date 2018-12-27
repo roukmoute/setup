@@ -17,6 +17,7 @@ config: ## Generate the ".env" file if it doesn't already exist
 	-@test -f .env || cp .env.dist .env
 	-@test -f docker/xdebug.env || cp docker/xdebug.env.dist docker/xdebug.env
 	-@test -f phpspec.yml || cp phpspec.yml.dist phpspec.yml
+	-@test -f phpstan.neon || cp phpstan.neon.dist phpstan.neon
 
 install: ## Install the environment
 	make config stop uninstall build start composer

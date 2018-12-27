@@ -17,6 +17,8 @@
     },
     "require-dev": {
         "phpspec/phpspec": "^5.1",
+        "phpstan/phpstan": "^0.11.0@dev",
+        "phpstan/phpstan-strict-rules": "^0.11.0@dev",
         "pyrech/composer-changelogs": "^1.6",
         "roave/security-advisories": "dev-master"
     },

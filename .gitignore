@@ -9,3 +9,7 @@
 ##> phpspec ###
 /phpspec.yml
 ###< phpspec ###
+
+##> phpstan ###
+/phpstan.neon
+###< phpstan ###
